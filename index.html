@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahzoda uchun Maxsus ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c20, #15102a, #241442);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Kirish ekrani */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f0c20;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+
+        .enter-btn {
+            background: linear-gradient(45deg, #ff3366, #ff66cc);
+            border: none;
+            padding: 15px 40px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.6);
+            animation: pulse 1.5s infinite;
+            outline: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Asosiy kontent */
+        .container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 35px 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .heart-icon {
+            font-size: 60px;
+            color: #ff3366;
+            animation: beat 1.2s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(45deg, #ff3366, #ff66cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dedication {
+            font-size: 15px;
+            color: #b3b3cc;
+            line-height: 1.6;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-screen">
+        <button class="enter-btn" id="start-button">✨ Kirish ✨</button>
+    </div>
+
+    <div class="container" id="main-content">
+        <div class="heart-icon">❤️</div>
+        <h1>Shahzoda uchun...</h1>
+        <p class="dedication">
+            "Oshiqman seni hammadan qizg'onib sevgan,<br>
+            Oshiqman qarab ozoringga ko'nib sevgan.<br>
+            Oshiqman faqat sen uchun dunyoga kelgan,<br>
+            Ko'z ochib bir o'zingni sevgan..."
+        </p>
+    </div>
+
+    <audio id="bg-music" loop src="music.mp3"></audio>
+
+    <script>
+        const startBtn = document.getElementById('start-button');
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const mainContent = document.getElementById('main-content');
+        const music = document.getElementById('bg-music');
+
+        startBtn.addEventListener('click', () => {
+            music.play().catch(err => alert("Musiqa fayli topilmadi yoki brauzer cheklovi bor. Fayl nomi 'music.mp3' ekanligini tekshiring!"));
+            
+            welcomeScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                }, 50);
+            }, 600);
+        });
+    </script>
+</body>
+</html>
